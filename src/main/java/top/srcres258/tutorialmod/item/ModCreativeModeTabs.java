@@ -32,6 +32,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.DEEPSLATE_SAPPHIRE_ORE.get());
                         output.accept(ModBlocks.NETHER_SAPPHIRE_ORE.get());
                         output.accept(ModBlocks.END_STONE_SAPPHIRE_ORE.get());
+
+                        output.accept(ModBlocks.SOUND_BLOCK.get());
                     }))
                     .build());
 
