@@ -16,6 +16,7 @@ import org.slf4j.Logger;
 import top.srcres258.tutorialmod.block.ModBlocks;
 import top.srcres258.tutorialmod.item.ModCreativeModeTabs;
 import top.srcres258.tutorialmod.item.ModItems;
+import top.srcres258.tutorialmod.loot.ModLootModifiers;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(TutorialMod.MOD_ID)
@@ -32,6 +33,8 @@ public class TutorialMod {
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+
+        ModLootModifiers.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
