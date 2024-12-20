@@ -11,6 +11,7 @@ import net.minecraftforge.common.loot.LootTableIdCondition;
 import top.srcres258.tutorialmod.TutorialMod;
 import top.srcres258.tutorialmod.item.ModItems;
 import top.srcres258.tutorialmod.loot.AddItemModifier;
+import top.srcres258.tutorialmod.loot.AddSusSandItemModifier;
 
 public class ModGlobalLootModifiersProvider extends GlobalLootModifierProvider {
     public ModGlobalLootModifiersProvider(PackOutput output) {
@@ -28,8 +29,12 @@ public class ModGlobalLootModifiersProvider extends GlobalLootModifierProvider {
                 new LootTableIdCondition.Builder(new ResourceLocation("entities/creeper")).build()
         }, ModItems.PINE_CONE.get()));
 
-        add("pine_cone_from_jungle_temples", new AddItemModifier(new LootItemCondition[] {
+        add("metal_detector_from_jungle_temples", new AddItemModifier(new LootItemCondition[] {
                 new LootTableIdCondition.Builder(new ResourceLocation("chests/jungle_temple")).build()
+        }, ModItems.METAL_DETECTOR.get()));
+
+        add("metal_detector_from_suspicious_sand", new AddSusSandItemModifier(new LootItemCondition[] {
+                new LootTableIdCondition.Builder(new ResourceLocation("archaeology/desert_pyramid")).build()
         }, ModItems.METAL_DETECTOR.get()));
     }
 }
