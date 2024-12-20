@@ -46,6 +46,9 @@ public class ModCreativeModeTabs {
 
                         output.accept(ModItems.STRAWBERRY_SEEDS.get());
 
+                        output.accept(ModItems.CORN_SEEDS.get());
+                        output.accept(ModItems.CORN.get());
+
                         // ----- Blocks -----
                         output.accept(ModBlocks.SAPPHIRE_BLOCK.get());
                         output.accept(ModBlocks.RAW_SAPPHIRE_BLOCK.get());

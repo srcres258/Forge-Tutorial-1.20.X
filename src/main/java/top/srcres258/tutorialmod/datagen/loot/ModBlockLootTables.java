@@ -15,6 +15,7 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.registries.RegistryObject;
 import top.srcres258.tutorialmod.block.ModBlocks;
+import top.srcres258.tutorialmod.block.custom.CornCropBlock;
 import top.srcres258.tutorialmod.block.custom.StrawberryCropBlock;
 import top.srcres258.tutorialmod.item.ModItems;
 
@@ -57,9 +58,22 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 .hasBlockStateProperties(ModBlocks.STRAWBERRY_CROP.get())
                 .setProperties(StatePropertiesPredicate.Builder
                         .properties()
-                        .hasProperty(StrawberryCropBlock.AGE, 5));
+                        .hasProperty(StrawberryCropBlock.AGE, StrawberryCropBlock.MAX_AGE));
         this.add(ModBlocks.STRAWBERRY_CROP.get(), createCropDrops(ModBlocks.STRAWBERRY_CROP.get(),
                 ModItems.STRAWBERRY.get(), ModItems.STRAWBERRY_SEEDS.get(), licb));
+
+        var licb2 = LootItemBlockStatePropertyCondition
+                .hasBlockStateProperties(ModBlocks.CORN_CROP.get())
+                .setProperties(StatePropertiesPredicate.Builder
+                        .properties()
+                        .hasProperty(CornCropBlock.AGE, CornCropBlock.FIRST_STAGE_MAX_AGE))
+                .or(LootItemBlockStatePropertyCondition
+                        .hasBlockStateProperties(ModBlocks.CORN_CROP.get())
+                        .setProperties(StatePropertiesPredicate.Builder
+                                .properties()
+                                .hasProperty(CornCropBlock.AGE, CornCropBlock.FIRST_STAGE_MAX_AGE + CornCropBlock.SECOND_STAGE_MAX_AGE)));
+        this.add(ModBlocks.CORN_CROP.get(), createCropDrops(ModBlocks.CORN_CROP.get(), ModItems.CORN.get(),
+                ModItems.CORN_SEEDS.get(), licb2));
     }
 
     protected LootTable.Builder createCopperLikeOreDrops(Block pBlock, Item item) {
