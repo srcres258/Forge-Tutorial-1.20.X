@@ -51,6 +51,8 @@ public class ModCreativeModeTabs {
 
                         output.accept(ModItems.BAR_BRAWL_MUSIC_DISC.get());
 
+                        output.accept(ModItems.RHINO_SPAWN_EGG.get());
+
                         // ----- Blocks -----
                         output.accept(ModBlocks.SAPPHIRE_BLOCK.get());
                         output.accept(ModBlocks.RAW_SAPPHIRE_BLOCK.get());
