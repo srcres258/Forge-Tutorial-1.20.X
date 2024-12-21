@@ -46,6 +46,8 @@
   "block.tutorialmod.sapphire_door": "Sapphire Door",
   "block.tutorialmod.sapphire_trapdoor": "Sapphire Trapdoor",
 
+  "block.tutorialmod.catmint": "Catmint",
+
   "tooltip.tutorialmod.metal_detector.tooltip": "Finds valuables underground!",
 
   "creativetab.tutorial_tab": "Sapphire Tutorial Tab"
