@@ -17,6 +17,7 @@ import top.srcres258.tutorialmod.block.custom.CornCropBlock;
 import top.srcres258.tutorialmod.block.custom.SoundBlock;
 import top.srcres258.tutorialmod.block.custom.StrawberryCropBlock;
 import top.srcres258.tutorialmod.item.ModItems;
+import top.srcres258.tutorialmod.sound.ModSounds;
 
 import java.util.function.Supplier;
 
@@ -43,7 +44,7 @@ public class ModBlocks {
                     .strength(5f).requiresCorrectToolForDrops(), UniformInt.of(3, 7)));
 
     public static final RegistryObject<Block> SOUND_BLOCK = registerBlock("sound_block",
-            () -> new SoundBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
+            () -> new SoundBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(ModSounds.SOUND_BLOCK_SOUNDS)));
 
     public static final RegistryObject<Block> SAPPHIRE_STAIRS = registerBlock("sapphire_stairs",
             () -> new StairBlock(ModBlocks.SAPPHIRE_BLOCK.get()::defaultBlockState,
