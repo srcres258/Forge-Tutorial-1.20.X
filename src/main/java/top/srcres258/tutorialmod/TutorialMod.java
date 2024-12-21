@@ -19,6 +19,7 @@ import top.srcres258.tutorialmod.block.ModBlocks;
 import top.srcres258.tutorialmod.item.ModCreativeModeTabs;
 import top.srcres258.tutorialmod.item.ModItems;
 import top.srcres258.tutorialmod.loot.ModLootModifiers;
+import top.srcres258.tutorialmod.villager.ModVillagers;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(TutorialMod.MOD_ID)
@@ -37,6 +38,8 @@ public class TutorialMod {
         ModBlocks.register(modEventBus);
 
         ModLootModifiers.register(modEventBus);
+
+        ModVillagers.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
