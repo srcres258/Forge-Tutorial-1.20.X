@@ -24,6 +24,7 @@ import top.srcres258.tutorialmod.entity.client.RhinoRenderer;
 import top.srcres258.tutorialmod.item.ModCreativeModeTabs;
 import top.srcres258.tutorialmod.item.ModItems;
 import top.srcres258.tutorialmod.loot.ModLootModifiers;
+import top.srcres258.tutorialmod.recipe.ModRecipes;
 import top.srcres258.tutorialmod.screen.GemPolishingStationScreen;
 import top.srcres258.tutorialmod.screen.ModMenuTypes;
 import top.srcres258.tutorialmod.sound.ModSounds;
@@ -50,6 +51,7 @@ public class TutorialMod {
         ModEntities.register(modEventBus);
         ModBlockEntities.register(modEventBus);
         ModMenuTypes.register(modEventBus);
+        ModRecipes.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 

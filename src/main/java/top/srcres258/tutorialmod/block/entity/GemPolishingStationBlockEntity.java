@@ -23,8 +23,10 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import top.srcres258.tutorialmod.item.ModItems;
+import top.srcres258.tutorialmod.recipe.GemPolishingRecipe;
 import top.srcres258.tutorialmod.screen.GemPolishingStationMenu;
+
+import java.util.Optional;
 
 public class GemPolishingStationBlockEntity extends BlockEntity implements MenuProvider {
     private final ItemStackHandler itemHandler = new ItemStackHandler(2);
@@ -135,12 +137,24 @@ public class GemPolishingStationBlockEntity extends BlockEntity implements MenuP
     }
 
     private boolean hasRecipe() {
-        var hasCraftingItem = itemHandler.getStackInSlot(INPUT_SLOT).getItem() == ModItems.RAW_SAPPHIRE.get();
-        var result = new ItemStack(ModItems.SAPPHIRE.get());
+        var recipe = getCurrentRecipe();
 
-        return hasCraftingItem
-                && canInsertAmountIntoOutputSlot(result.getCount())
+        if (recipe.isEmpty()) {
+            return false;
+        }
+        var result = recipe.get().getResultItem(getLevel().registryAccess());
+
+        return canInsertAmountIntoOutputSlot(result.getCount())
                 && canInsertItemIntoOutputSlot(result.getItem());
+    }
+
+    private Optional<GemPolishingRecipe> getCurrentRecipe() {
+        var inventory = new SimpleContainer(itemHandler.getSlots());
+        for (int i = 0; i < itemHandler.getSlots(); i++) {
+            inventory.setItem(i, itemHandler.getStackInSlot(i));
+        }
+
+        return level.getRecipeManager().getRecipeFor(GemPolishingRecipe.Type.INSTANCE, inventory, level);
     }
 
     private boolean canInsertItemIntoOutputSlot(Item item) {
@@ -162,9 +176,10 @@ public class GemPolishingStationBlockEntity extends BlockEntity implements MenuP
     }
 
     private void craftItem() {
-        var result = new ItemStack(ModItems.SAPPHIRE.get());
+        var recipe = getCurrentRecipe();
+        // We assure that the result must exist.
+        var result = recipe.get().getResultItem(null);
         itemHandler.extractItem(INPUT_SLOT, 1, false);
-
         itemHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(result.getItem(),
                 itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() + result.getCount()));
     }
