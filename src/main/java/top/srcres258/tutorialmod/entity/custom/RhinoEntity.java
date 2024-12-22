@@ -1,5 +1,8 @@
 package top.srcres258.tutorialmod.entity.custom;
 
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -11,6 +14,7 @@ import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -19,10 +23,17 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 import top.srcres258.tutorialmod.entity.ModEntities;
+import top.srcres258.tutorialmod.entity.ai.RhinoAttackGoal;
 
 public class RhinoEntity extends Animal {
+    private static final EntityDataAccessor<Boolean> ATTACKING =
+            SynchedEntityData.defineId(RhinoEntity.class, EntityDataSerializers.BOOLEAN);
+
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
+
+    public final AnimationState attackAnimationState = new AnimationState();
+    private int attackAnimationTimeout = 0;
 
     public RhinoEntity(EntityType<? extends Animal> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -44,6 +55,17 @@ public class RhinoEntity extends Animal {
         } else {
             idleAnimationTimeout--;
         }
+
+        if (isAttacking() && attackAnimationTimeout <= 0) {
+            attackAnimationTimeout = 80; // Length in ticks of your animation.
+            attackAnimationState.start(tickCount);
+        } else {
+            attackAnimationTimeout--;
+        }
+
+        if (!isAttacking()) {
+            attackAnimationState.stop();
+        }
     }
 
     @Override
@@ -58,9 +80,25 @@ public class RhinoEntity extends Animal {
         walkAnimation.update(f, 0.2F);
     }
 
+    public void setAttacking(boolean attacking) {
+        entityData.set(ATTACKING, attacking);
+    }
+
+    public boolean isAttacking() {
+        return entityData.get(ATTACKING);
+    }
+
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        entityData.define(ATTACKING, false);
+    }
+
     @Override
     protected void registerGoals() {
         goalSelector.addGoal(0, new FloatGoal(this));
+
+        goalSelector.addGoal(1, new RhinoAttackGoal(this, 1.0D, true));
 
         goalSelector.addGoal(1, new BreedGoal(this, 1.15D));
         goalSelector.addGoal(2, new TemptGoal(this, 1.2D, Ingredient.of(Items.COOKED_BEEF), false));
@@ -70,6 +108,8 @@ public class RhinoEntity extends Animal {
         goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 1.1D));
         goalSelector.addGoal(5, new LookAtPlayerGoal(this, Player.class, 3F));
         goalSelector.addGoal(6, new RandomLookAroundGoal(this));
+
+        targetSelector.addGoal(1, new HurtByTargetGoal(this));
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -105,5 +145,13 @@ public class RhinoEntity extends Animal {
     @Override
     protected @Nullable SoundEvent getDeathSound() {
         return SoundEvents.DOLPHIN_DEATH;
+    }
+
+    public int getAttackAnimationTimeout() {
+        return attackAnimationTimeout;
+    }
+
+    public void setAttackAnimationTimeout(int value) {
+        attackAnimationTimeout = value;
     }
 }

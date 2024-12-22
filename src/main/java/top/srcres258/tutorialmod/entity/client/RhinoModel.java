@@ -5,7 +5,6 @@ package top.srcres258.tutorialmod.entity.client;// Made with Blockbench 4.11.2
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -140,6 +139,7 @@ public class RhinoModel<T extends Entity> extends HierarchicalModel<T> {
 
 		animateWalk(ModAnimationDefinitions.RHINO_WALK, limbSwing, limbSwingAmount, 2F, 2.5F);
 		animate(((RhinoEntity) entity).idleAnimationState, ModAnimationDefinitions.RHINO_IDLE, ageInTicks, 1F);
+		animate(((RhinoEntity) entity).attackAnimationState, ModAnimationDefinitions.RHINO_ATTACK, ageInTicks, 1F);
 	}
 
 	private void applyHeadRotation(float pNetHeadYaw, float pHeadPitch) {
