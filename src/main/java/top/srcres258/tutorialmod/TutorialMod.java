@@ -1,6 +1,7 @@
 package top.srcres258.tutorialmod;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Blocks;
@@ -17,11 +18,14 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 import top.srcres258.tutorialmod.block.ModBlocks;
+import top.srcres258.tutorialmod.block.entity.ModBlockEntities;
 import top.srcres258.tutorialmod.entity.ModEntities;
 import top.srcres258.tutorialmod.entity.client.RhinoRenderer;
 import top.srcres258.tutorialmod.item.ModCreativeModeTabs;
 import top.srcres258.tutorialmod.item.ModItems;
 import top.srcres258.tutorialmod.loot.ModLootModifiers;
+import top.srcres258.tutorialmod.screen.GemPolishingStationScreen;
+import top.srcres258.tutorialmod.screen.ModMenuTypes;
 import top.srcres258.tutorialmod.sound.ModSounds;
 import top.srcres258.tutorialmod.villager.ModVillagers;
 
@@ -44,6 +48,8 @@ public class TutorialMod {
         ModVillagers.register(modEventBus);
         ModSounds.register(modEventBus);
         ModEntities.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
@@ -75,6 +81,8 @@ public class TutorialMod {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             EntityRenderers.register(ModEntities.RHINO.get(), RhinoRenderer::new);
+
+            MenuScreens.register(ModMenuTypes.GEM_POLISHING_MENU.get(), GemPolishingStationScreen::new);
         }
     }
 }
