@@ -8,6 +8,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 import top.srcres258.tutorialmod.TutorialMod;
+import top.srcres258.tutorialmod.block.ModBlocks;
 import top.srcres258.tutorialmod.item.ModItems;
 
 import java.util.concurrent.CompletableFuture;
@@ -37,5 +38,14 @@ public class ModItemTagGenerator extends ItemTagsProvider {
 
         this.tag(ItemTags.CREEPER_DROP_MUSIC_DISCS)
                 .add(ModItems.BAR_BRAWL_MUSIC_DISC.get());
+
+        this.tag(ItemTags.LOGS_THAT_BURN)
+                .add(ModBlocks.PINE_LOG.get().asItem())
+                .add(ModBlocks.PINE_WOOD.get().asItem())
+                .add(ModBlocks.STRIPPED_PINE_LOG.get().asItem())
+                .add(ModBlocks.STRIPPED_PINE_WOOD.get().asItem());
+
+        this.tag(ItemTags.PLANKS)
+                .add(ModBlocks.PINE_PLANKS.get().asItem());
     }
 }
