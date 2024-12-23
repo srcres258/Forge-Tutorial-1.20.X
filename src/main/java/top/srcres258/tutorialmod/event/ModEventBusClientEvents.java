@@ -5,6 +5,8 @@ import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import top.srcres258.tutorialmod.TutorialMod;
+import top.srcres258.tutorialmod.block.entity.ModBlockEntities;
+import top.srcres258.tutorialmod.block.entity.renderer.GemPolishingBlockEntityRenderer;
 import top.srcres258.tutorialmod.entity.client.ModModelLayers;
 import top.srcres258.tutorialmod.entity.client.RhinoModel;
 
@@ -17,5 +19,10 @@ public class ModEventBusClientEvents {
     @SubscribeEvent
     public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(ModModelLayers.RHINO_LAYER, RhinoModel::createBodyLayer);
+    }
+
+    @SubscribeEvent
+    public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
+        event.registerBlockEntityRenderer(ModBlockEntities.GEM_POLISHING_BE.get(), GemPolishingBlockEntityRenderer::new);
     }
 }

@@ -12,6 +12,9 @@ import top.srcres258.tutorialmod.recipe.GemPolishingRecipe;
 import top.srcres258.tutorialmod.screen.GemPolishingStationScreen;
 
 @JeiPlugin
+// Add this so that IDE won't warn that the class is unused,
+// annoyed about that.
+@SuppressWarnings("unused")
 public class JEITutorialModPlugin implements IModPlugin {
     @Override
     public ResourceLocation getPluginUid() {
