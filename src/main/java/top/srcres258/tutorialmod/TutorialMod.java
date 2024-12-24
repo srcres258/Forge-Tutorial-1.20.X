@@ -21,6 +21,7 @@ import org.slf4j.Logger;
 import top.srcres258.tutorialmod.block.ModBlocks;
 import top.srcres258.tutorialmod.block.entity.ModBlockEntities;
 import top.srcres258.tutorialmod.entity.ModEntities;
+import top.srcres258.tutorialmod.entity.client.ModBoatRenderer;
 import top.srcres258.tutorialmod.entity.client.RhinoRenderer;
 import top.srcres258.tutorialmod.item.ModCreativeModeTabs;
 import top.srcres258.tutorialmod.item.ModItems;
@@ -87,6 +88,9 @@ public class TutorialMod {
             Sheets.addWoodType(ModWoodTypes.PINE);
 
             EntityRenderers.register(ModEntities.RHINO.get(), RhinoRenderer::new);
+
+            EntityRenderers.register(ModEntities.MOD_BOAT.get(), pContext -> new ModBoatRenderer(pContext, false));
+            EntityRenderers.register(ModEntities.MOD_CHEST_BOAT.get(), pContext -> new ModBoatRenderer(pContext, true));
 
             MenuScreens.register(ModMenuTypes.GEM_POLISHING_MENU.get(), GemPolishingStationScreen::new);
         }

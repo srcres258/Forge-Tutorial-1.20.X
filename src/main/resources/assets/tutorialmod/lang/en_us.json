@@ -31,6 +31,9 @@
 
   "item.tutorialmod.rhino_spawn_egg": "Rhino Spawn Egg",
 
+  "item.tutorialmod.pine_boat": "Pine Boat",
+  "item.tutorialmod.pine_chest_boat": "Pine Chest Boat",
+
   "block.tutorialmod.sapphire_block": "Block of Sapphire",
   "block.tutorialmod.raw_sapphire_block": "Block of Raw Sapphire",
 
@@ -69,6 +72,8 @@
   "tooltip.tutorialmod.metal_detector.tooltip": "Finds valuables underground!",
 
   "entity.minecraft.villager.tutorialmod.soundmaster": "Sound Master",
+
+  "entity.tutorialmod.mod_chest_boat": "Boat with Chest",
 
   "sounds.tutorialmod.metal_detector_found_ore": "Metal Detector Jingle",
 

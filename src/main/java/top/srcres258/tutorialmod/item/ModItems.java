@@ -9,9 +9,11 @@ import net.minecraftforge.registries.RegistryObject;
 import top.srcres258.tutorialmod.TutorialMod;
 import top.srcres258.tutorialmod.block.ModBlocks;
 import top.srcres258.tutorialmod.entity.ModEntities;
+import top.srcres258.tutorialmod.entity.custom.ModBoatEntity;
 import top.srcres258.tutorialmod.item.custom.FuelItem;
 import top.srcres258.tutorialmod.item.custom.MetalDetectorItem;
 import top.srcres258.tutorialmod.item.custom.ModArmorItem;
+import top.srcres258.tutorialmod.item.custom.ModBoatItem;
 import top.srcres258.tutorialmod.sound.ModSounds;
 
 public class ModItems {
@@ -76,6 +78,11 @@ public class ModItems {
     public static final RegistryObject<Item> PINE_HANGING_SIGN = ITEMS.register("pine_hanging_sign",
             () -> new HangingSignItem(ModBlocks.PINE_HANGING_SIGN.get(), ModBlocks.PINE_WALL_HANGING_SIGN.get(),
                     new Item.Properties().stacksTo(16)));
+
+    public static final RegistryObject<Item> PINE_BOAT = ITEMS.register("pine_boat",
+            () -> new ModBoatItem(false, ModBoatEntity.Type.PINE, new Item.Properties()));
+    public static final RegistryObject<Item> PINE_CHEST_BOAT = ITEMS.register("pine_chest_boat",
+            () -> new ModBoatItem(true, ModBoatEntity.Type.PINE, new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
