@@ -87,6 +87,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 blockTexture(ModBlocks.PINE_PLANKS.get()));
         hangingSignBlock(ModBlocks.PINE_HANGING_SIGN.get(), ModBlocks.PINE_WALL_HANGING_SIGN.get(),
                 blockTexture(ModBlocks.PINE_PLANKS.get()));
+
+        saplingBlock(ModBlocks.PINE_SAPLING);
+    }
+
+    private void saplingBlock(RegistryObject<Block> block) {
+        simpleBlock(block.get(), models()
+                .cross(ForgeRegistries.BLOCKS.getKey(block.get()).getPath(), blockTexture(block.get()))
+                .renderType("cutout"));
     }
 
     public void hangingSignBlock(Block signBlock, Block wallSignBlock, ResourceLocation texture) {

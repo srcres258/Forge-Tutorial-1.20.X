@@ -95,6 +95,8 @@ public class ModCreativeModeTabs {
 
                         output.accept(ModBlocks.PINE_SIGN.get());
                         output.accept(ModBlocks.PINE_HANGING_SIGN.get());
+
+                        output.accept(ModBlocks.PINE_SAPLING.get());
                     }))
                     .build());
 

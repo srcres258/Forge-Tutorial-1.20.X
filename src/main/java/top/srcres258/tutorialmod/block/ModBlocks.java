@@ -21,6 +21,7 @@ import top.srcres258.tutorialmod.block.custom.*;
 import top.srcres258.tutorialmod.item.ModItems;
 import top.srcres258.tutorialmod.sound.ModSounds;
 import top.srcres258.tutorialmod.util.ModWoodTypes;
+import top.srcres258.tutorialmod.worldgen.tree.PineTreeGrower;
 
 import java.util.function.Supplier;
 
@@ -150,6 +151,9 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> DICE_BLOCK = BLOCKS.register("dice_block",
             () -> new DiceBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noLootTable()));
+
+    public static final RegistryObject<Block> PINE_SAPLING = registerBlock("pine_sapling",
+            () -> new SaplingBlock(new PineTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
 
     private static <T extends Block> RegistryObject<T> registerBlock(
             String name,
