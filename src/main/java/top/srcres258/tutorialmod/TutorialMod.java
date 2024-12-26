@@ -19,6 +19,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
+import terrablender.api.SurfaceRuleManager;
 import top.srcres258.tutorialmod.block.ModBlocks;
 import top.srcres258.tutorialmod.block.entity.ModBlockEntities;
 import top.srcres258.tutorialmod.entity.ModEntities;
@@ -33,6 +34,8 @@ import top.srcres258.tutorialmod.screen.ModMenuTypes;
 import top.srcres258.tutorialmod.sound.ModSounds;
 import top.srcres258.tutorialmod.util.ModWoodTypes;
 import top.srcres258.tutorialmod.villager.ModVillagers;
+import top.srcres258.tutorialmod.worldgen.biome.ModTerraBlender;
+import top.srcres258.tutorialmod.worldgen.biome.surface.ModSurfaceRules;
 import top.srcres258.tutorialmod.worldgen.tree.ModFoliagePlacers;
 import top.srcres258.tutorialmod.worldgen.tree.ModTrunkPlacerTypes;
 
@@ -61,6 +64,8 @@ public class TutorialMod {
         ModTrunkPlacerTypes.register(modEventBus);
         ModFoliagePlacers.register(modEventBus);
 
+        ModTerraBlender.registerBiomes();
+
         modEventBus.addListener(this::commonSetup);
 
         MinecraftForge.EVENT_BUS.register(this);
@@ -68,8 +73,12 @@ public class TutorialMod {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> ((FlowerPotBlock) Blocks.FLOWER_POT)
-                .addPlant(ModBlocks.CATMINT.getId(), ModBlocks.POTTED_CATMINT));
+        event.enqueueWork(() -> {
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.CATMINT.getId(), ModBlocks.POTTED_CATMINT);
+
+            SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, MOD_ID,
+                    ModSurfaceRules.makeRules());
+        });
     }
 
     // Add the example block item to the building blocks tab
