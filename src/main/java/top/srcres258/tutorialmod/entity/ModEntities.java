@@ -7,6 +7,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import top.srcres258.tutorialmod.TutorialMod;
+import top.srcres258.tutorialmod.entity.custom.DiceProjectileEntity;
 import top.srcres258.tutorialmod.entity.custom.ModBoatEntity;
 import top.srcres258.tutorialmod.entity.custom.ModChestBoatEntity;
 import top.srcres258.tutorialmod.entity.custom.RhinoEntity;
@@ -30,6 +31,12 @@ public class ModEntities {
                     .<ModChestBoatEntity>of(ModChestBoatEntity::new, MobCategory.MISC)
                     .sized(1.375F, 0.5625F)
                     .build("mod_chest_boat"));
+
+    public static final RegistryObject<EntityType<DiceProjectileEntity>> DICE_PROJECTILE =
+            ENTITY_TYPES.register("dice_projectile", () -> EntityType.Builder
+                    .<DiceProjectileEntity>of(DiceProjectileEntity::new, MobCategory.CREATURE)
+                    .sized(0.5F, 0.5F)
+                    .build("dice_projectile"));
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);

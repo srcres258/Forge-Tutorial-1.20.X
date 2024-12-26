@@ -10,10 +10,7 @@ import top.srcres258.tutorialmod.TutorialMod;
 import top.srcres258.tutorialmod.block.ModBlocks;
 import top.srcres258.tutorialmod.entity.ModEntities;
 import top.srcres258.tutorialmod.entity.custom.ModBoatEntity;
-import top.srcres258.tutorialmod.item.custom.FuelItem;
-import top.srcres258.tutorialmod.item.custom.MetalDetectorItem;
-import top.srcres258.tutorialmod.item.custom.ModArmorItem;
-import top.srcres258.tutorialmod.item.custom.ModBoatItem;
+import top.srcres258.tutorialmod.item.custom.*;
 import top.srcres258.tutorialmod.sound.ModSounds;
 
 public class ModItems {
@@ -83,6 +80,9 @@ public class ModItems {
             () -> new ModBoatItem(false, ModBoatEntity.Type.PINE, new Item.Properties()));
     public static final RegistryObject<Item> PINE_CHEST_BOAT = ITEMS.register("pine_chest_boat",
             () -> new ModBoatItem(true, ModBoatEntity.Type.PINE, new Item.Properties()));
+
+    public static final RegistryObject<Item> DICE = ITEMS.register("dice",
+            () -> new DiceItem(new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
