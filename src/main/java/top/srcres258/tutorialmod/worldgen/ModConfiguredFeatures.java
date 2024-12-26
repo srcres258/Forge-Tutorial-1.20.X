@@ -15,11 +15,11 @@ import net.minecraft.world.level.levelgen.feature.configurations.TreeConfigurati
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
-import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import top.srcres258.tutorialmod.TutorialMod;
 import top.srcres258.tutorialmod.block.ModBlocks;
+import top.srcres258.tutorialmod.worldgen.tree.custom.PineTrunkPlacer;
 
 import java.util.List;
 
@@ -57,7 +57,7 @@ public class ModConfiguredFeatures {
 
         register(context, PINE_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(ModBlocks.PINE_LOG.get()),
-                new StraightTrunkPlacer(5, 4, 3),
+                new PineTrunkPlacer(5, 4, 3),
                 BlockStateProvider.simple(ModBlocks.PINE_LEAVES.get()),
                 new BlobFoliagePlacer(ConstantInt.of(3), ConstantInt.of(2), 3),
                 new TwoLayersFeatureSize(1, 0, 2)

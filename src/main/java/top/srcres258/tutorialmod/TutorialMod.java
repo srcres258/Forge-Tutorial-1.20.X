@@ -33,6 +33,7 @@ import top.srcres258.tutorialmod.screen.ModMenuTypes;
 import top.srcres258.tutorialmod.sound.ModSounds;
 import top.srcres258.tutorialmod.util.ModWoodTypes;
 import top.srcres258.tutorialmod.villager.ModVillagers;
+import top.srcres258.tutorialmod.worldgen.tree.ModTrunkPlacerTypes;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(TutorialMod.MOD_ID)
@@ -56,6 +57,7 @@ public class TutorialMod {
         ModBlockEntities.register(modEventBus);
         ModMenuTypes.register(modEventBus);
         ModRecipes.register(modEventBus);
+        ModTrunkPlacerTypes.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
