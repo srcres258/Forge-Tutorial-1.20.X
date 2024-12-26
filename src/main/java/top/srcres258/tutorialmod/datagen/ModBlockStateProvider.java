@@ -89,6 +89,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 blockTexture(ModBlocks.PINE_PLANKS.get()));
 
         saplingBlock(ModBlocks.PINE_SAPLING);
+
+        blockWithItem(ModBlocks.MOD_PORTAL);
     }
 
     private void saplingBlock(RegistryObject<Block> block) {
